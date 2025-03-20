@@ -6,6 +6,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const db = mongoose.connection
 const app = express()
+const registerRouter = require('./routes/register')
 
 // Database setup
 mongoose.connect(process.env.DATABASE_URL,
@@ -30,3 +31,6 @@ app.get('/api', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+// Listen for register
+app.use('/api', registerRouter)
